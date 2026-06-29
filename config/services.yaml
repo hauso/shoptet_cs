@@ -1,0 +1,48 @@
+parameters:
+  app.balikovna_feed_url: '%env(BALIKOVNA_FEED_URL)%'
+  app.http_timeout: '%env(float:HTTP_TIMEOUT)%'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  App\:
+    resource: '../src/'
+    exclude:
+      - '../src/Entity/'
+      - '../src/Model/'
+      - '../src/Kernel.php'
+
+  GuzzleHttp\ClientInterface:
+    class: GuzzleHttp\Client
+
+  Psr\Log\LoggerInterface:
+    class: Monolog\Logger
+    arguments:
+      $name: 'app'
+    calls:
+      - method: pushHandler
+        arguments:
+          - '@monolog.stream_handler'
+
+  monolog.stream_handler:
+    class: Monolog\Handler\StreamHandler
+    arguments: ['%kernel.project_dir%/var/log/app.log']
+
+  App\Service\HttpClient:
+    arguments:
+      $timeout: '%app.http_timeout%'
+
+  App\Provider\Balikovna\BalikovnaPickupPointProvider:
+    arguments:
+      $feedUrl: '%app.balikovna_feed_url%'
+    tags: ['app.pickup_point_provider']
+
+  App\Provider\PickupPoint\CarrierProviderRegistry:
+    arguments:
+      $providers: !tagged_iterator app.pickup_point_provider
+
+  App\Command\ImportPickupPointsCommand:
+    public: true

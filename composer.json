@@ -1,0 +1,60 @@
+{
+  "name": "case-study/php-logistics",
+  "description": "Symfony-like pickup point import case study.",
+  "type": "project",
+  "require": {
+    "php": "^8.4",
+    "ext-simplexml": "*",
+    "doctrine/dbal": "^4.0",
+    "doctrine/doctrine-bundle": "^2.13",
+    "doctrine/doctrine-migrations-bundle": "^3.3",
+    "doctrine/migrations": "^3.8",
+    "doctrine/orm": "^3.0",
+    "guzzlehttp/guzzle": "^7.8",
+    "monolog/monolog": "^3.0",
+    "symfony/config": "^7.4",
+    "symfony/console": "^7.4",
+    "symfony/dependency-injection": "^7.4",
+    "symfony/dotenv": "^7.4",
+    "symfony/framework-bundle": "^7.4",
+    "symfony/var-exporter": "^7.4",
+    "symfony/yaml": "^7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.0",
+    "phpstan/phpstan": "^2.0",
+    "friendsofphp/php-cs-fixer": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "migrate": "php bin/console doctrine:migrations:migrate --no-interaction",
+    "import:balikovna": "php -d memory_limit=1G bin/console app:pickup-points:import balikovna",
+    "test": "phpunit",
+    "phpstan": "phpstan analyse src tests --memory-limit=512M",
+    "stan-check": "@phpstan",
+    "cs-check": "php-cs-fixer fix --dry-run --diff",
+    "cs-fix": "php-cs-fixer fix",
+    "docker:migrate": "docker compose exec php composer migrate",
+    "docker:import:balikovna": "docker compose exec php composer import:balikovna",
+    "docker:test": "docker compose exec php composer test",
+    "docker:phpstan": "docker compose exec php composer phpstan",
+    "docker:cs-check": "docker compose exec php composer cs-check",
+    "docker:cs-fix": "docker compose exec php composer cs-fix"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  },
+  "license": "proprietary"
+}

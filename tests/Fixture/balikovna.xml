@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zv xmlns="https://www.ceskaposta.cz/balikovna">
+  <generated>2026-06-30T00:00:00+00:00</generated>
+  <row>
+    <PSC>10000</PSC>
+    <NAZEV>Praha 10</NAZEV>
+    <ADRESA>Černokostelecká 2020/20, Strašnice, 10000, Praha 10</ADRESA>
+    <TYP>pošta</TYP>
+    <OTEV_DOBY><den name="Po"><od>08:00</od><do>18:00</do></den></OTEV_DOBY>
+    <SOUR_X>1047580.12</SOUR_X>
+    <SOUR_Y>740123.45</SOUR_Y>
+    <OBEC>Praha</OBEC>
+    <C_OBEC>Strašnice</C_OBEC>
+    <SOUR_X_WGS84>14.492777</SOUR_X_WGS84>
+    <SOUR_Y_WGS84>50.076442</SOUR_Y_WGS84>
+  </row>
+  <row>
+    <PSC>60200</PSC>
+    <NAZEV>Balíkovna Brno box</NAZEV>
+    <ADRESA>Nádražní 1, 60200, Brno</ADRESA>
+    <TYP>BalikoBOX</TYP>
+    <OTEV_DOBY><den name="Po-Ne"><od>00:00</od><do>23:59</do></den></OTEV_DOBY>
+    <OBEC>Brno</OBEC>
+    <C_OBEC>Brno-město</C_OBEC>
+    <SOUR_X_WGS84>16.612000</SOUR_X_WGS84>
+    <SOUR_Y_WGS84>49.191000</SOUR_Y_WGS84>
+  </row>
+</zv>
